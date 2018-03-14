@@ -16,7 +16,7 @@ export class InputChangeComponent extends TreeNode {
     super(context);
   }
 
-  public updateModel($event) {
+  public addCount($event) {
     this.count$.next({ value: parseInt($event) || 0 });
   }
 

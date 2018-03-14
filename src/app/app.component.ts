@@ -3,7 +3,6 @@ import {Lifecycle} from "./utils/Lifecycle";
 import {TreeNode} from "./tree/base.class";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Subscription} from "rxjs/Subscription";
-import 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +21,13 @@ export class AppComponent extends TreeNode {
   constructor(context: Injector) {
     super(context);
     this.cd = context.get(ChangeDetectorRef);
+  }
+
+  public ngOnInit() {
     this.sub$ = this.countTree$.subscribe(() => {
       clearInterval(this.timer);
       this.timer = setTimeout(() => this.cd.detectChanges(), 150);
     });
   }
+
 }
