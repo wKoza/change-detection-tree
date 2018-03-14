@@ -21,7 +21,7 @@ export class AppComponent extends TreeNode {
     super(context);
     this.cd = context.get(ChangeDetectorRef);
     this.sub$ = this.countTree$.subscribe((data) => {
-      setTimeout(() => this.cd.markForCheck() );
+      setTimeout(() => this.cd.detectChanges() );
     });
   }
 }

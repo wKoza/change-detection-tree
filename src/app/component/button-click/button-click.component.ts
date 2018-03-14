@@ -1,6 +1,7 @@
-import {ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Injector, Input} from '@angular/core';
 import {Lifecycle} from "../../utils/Lifecycle";
 import {TreeNode} from "../../tree/base.class";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Component({
   selector: 'button-click',
@@ -8,23 +9,18 @@ import {TreeNode} from "../../tree/base.class";
   styleUrls: ['./button-click.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-@Lifecycle({ defaultName: true })
+@Lifecycle({defaultName: true})
 export class ButtonClickComponent extends TreeNode {
 
-  @Input() count: { value: number };
-  private cd: ChangeDetectorRef;
-  private appRef: ApplicationRef;
+  @Input() count$: BehaviorSubject<{ value: number }>;
 
   constructor(context: Injector) {
     super(context);
-    this.cd = context.get(ChangeDetectorRef);
-    this.appRef = context.get(ApplicationRef);
   }
 
   public addCount() {
-    this.count.value++;
-    //this.cd.detectChanges();
-    this.appRef.tick();
+    let countValue: number = (this.count$.getValue()).value;
+    this.count$.next({ value: ++countValue });
   }
 
 }
