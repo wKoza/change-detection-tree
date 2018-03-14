@@ -1,5 +1,5 @@
 <center>
-  countTree = {{countTree|json}}
+  countTree$ = {{countTree$|async|json}}
 </center>
 
 <tree>
@@ -9,7 +9,7 @@
     <child>
       <div>
         <input-change
-          [count]="countTree">
+          [count$]="countTree$">
         </input-change>
       </div>
     </child>
@@ -18,9 +18,9 @@
   <child>
     <child>
       <div>
-        <button-click
+        <!--<button-click
           [count]="countTree">
-        </button-click>
+        </button-click>-->
       </div>
     </child>
   </child>

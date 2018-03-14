@@ -1,6 +1,8 @@
-import {ChangeDetectionStrategy, Component, Injector} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector} from '@angular/core';
 import {Lifecycle} from "./utils/Lifecycle";
 import {TreeNode} from "./tree/base.class";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,16 @@ import {TreeNode} from "./tree/base.class";
 })
 @Lifecycle({ defaultName: true })
 export class AppComponent extends TreeNode {
-  countTree = { value: 0 };
+
+  public countTree$ = new BehaviorSubject<{ value: number }>({ value: 0 });
+  private cd: ChangeDetectorRef;
+  private sub$: Subscription;
+
   constructor(context: Injector) {
     super(context);
+    this.cd = context.get(ChangeDetectorRef);
+    this.sub$ = this.countTree$.subscribe((data) => {
+      setTimeout(() => this.cd.markForCheck() );
+    });
   }
 }
