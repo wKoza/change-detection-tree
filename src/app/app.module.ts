@@ -9,6 +9,7 @@ import { IntervalComponent } from './component/interval/interval.component';
 import { ButtonClickComponent } from './component/button-click/button-click.component';
 import {FormsModule} from "@angular/forms";
 import { InputChangeComponent } from './component/input-change/input-change.component';
+import { NoopElementComponent } from './component/noop-element/noop-element.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { InputChangeComponent } from './component/input-change/input-change.comp
     ChildComponent,
     IntervalComponent,
     ButtonClickComponent,
-    InputChangeComponent
+    InputChangeComponent,
+    NoopElementComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+<div class="noop">
+  <div [ngStyle]="{'background-color': color, 'color': '#fff'}">
+    <p>{{ componentId }}</p>
+  </div>
+
+  <ng-content></ng-content>
+
+  <div *ngIf="savedItems || (limit.deep > 0 && countList.length)">
+    <noop-element *ngFor="let element of countList" [limit]="limit">
+      <div class="noop" *ngIf="setButton && count">
+        <button-click [count]="count"></button-click>
+        <br><br>
+      </div>
+      <div class="noop" *ngIf="setInput && count">
+        <input-change [count]="count"></input-change>
+      </div>
+    </noop-element>
+  </div>
+
+</div>
