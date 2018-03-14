@@ -6,12 +6,12 @@
   <ng-content></ng-content>
 
   <div *ngIf="savedItems || (limit.deep > 0 && countList.length)">
-    <noop-element *ngFor="let element of countList" [limit]="limit">
-      <div *ngIf="setButton && count">
+    <noop-element *ngFor="let element of countList" [limit]="limit" [count]="count">
+      <div *ngIf="setButton">
         <button-click [count]="count"></button-click>
         <br><br>
       </div>
-      <div *ngIf="setInput && count">
+      <div *ngIf="setInput">
         <input-change [count]="count"></input-change>
       </div>
     </noop-element>
